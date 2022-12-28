@@ -32,6 +32,16 @@ public class ProductControllerImpl implements ProductController{
     }
 
     @Override
+    @GetMapping("/{designation}")
+    public ResponseEntity<Object> getProductByDesignation(@PathVariable String designation) {
+        Product product = productService.getProductByDesignation(designation);
+        if(product == null){
+            return productExceptionHandler.productNotFount();
+        }
+        return new ResponseEntity<>(product,HttpStatus.OK) ;
+    }
+
+    @Override
     @PostMapping("")
     public ResponseEntity<Object> addProduct(@RequestBody Product product) {
         if(product.getPrice() < 0 || product.getDepositQuantity() < 0){

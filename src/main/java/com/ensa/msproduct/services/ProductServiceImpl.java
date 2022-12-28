@@ -22,6 +22,11 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
+    public Product getProductByDesignation(String designation) {
+        return productRepository.findProductByDesignation(designation);
+    }
+
+    @Override
     public Product addProduct(Product product) {
         return productRepository.save(product);
     }
