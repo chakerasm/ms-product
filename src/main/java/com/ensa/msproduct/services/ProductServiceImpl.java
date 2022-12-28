@@ -41,6 +41,11 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
+    public Product findProductById(Long id) {
+        return productRepository.findProductById(id);
+    }
+
+    @Override
     public void deleteProduct(Long id) {
         productRepository.deleteById(id);
     }

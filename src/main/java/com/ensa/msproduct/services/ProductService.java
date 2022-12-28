@@ -13,6 +13,7 @@ public interface ProductService {
     List<Product> getProducts();
     Product addProduct(Product product);
     Product editProduct(Long id,Product product);
+    Product findProductById(Long id);
     void deleteProduct(Long id);
 
 }
