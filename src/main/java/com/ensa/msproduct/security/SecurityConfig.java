@@ -1,4 +1,6 @@
+
 package com.ensa.msproduct.security;
+
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,6 +11,7 @@ import org.springframework.web.cors.CorsConfiguration;
 
 @Configuration
 @EnableWebSecurity
+
 public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -18,4 +21,6 @@ public class SecurityConfig {
         http.cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues());
         return http.build();
     }
+
+
 }

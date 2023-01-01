@@ -15,7 +15,6 @@ public interface ProductService {
     Product getProductByDesignation(String designation);
     Product addProduct(Product product);
     Product editProduct(Long id,Product product);
-    Product findProductById(Long id);
     void deleteProduct(Long id);
 
 }
