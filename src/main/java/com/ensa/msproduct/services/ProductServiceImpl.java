@@ -37,6 +37,9 @@ public class ProductServiceImpl implements ProductService{
         if(productRepository.findProductById(product.getId()) != null ){
             throw new EntityAlreadyExistsException("The product already exists");
         }
+        if(productRepository.findProductByDesignation(product.getDesignation()) != null){
+            throw new EntityAlreadyExistsException("A product already has the same designation");
+        }
         if(product.getPrice() < 0 || product.getDepositQuantity() < 0){
             throw new NegativeValuesException("The product's price or quantity cannot be negative");
         }
