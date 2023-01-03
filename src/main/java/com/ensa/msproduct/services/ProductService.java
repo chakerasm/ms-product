@@ -9,7 +9,7 @@ public interface ProductService {
 
     List<Product> getProducts();
 
-    Product getProductByDesignation(String designation);
+    List<Product> getProductByDesignation(String designation);
     Product addProduct(Product product);
     Product editProduct(Long id,Product product);
     void deleteProduct(Long id);

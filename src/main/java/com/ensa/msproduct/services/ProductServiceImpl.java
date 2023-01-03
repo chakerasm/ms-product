@@ -25,11 +25,12 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public Product getProductByDesignation(String designation) {
-        if(productRepository.findProductByDesignation(designation) == null ){
-            throw new EntityNotFoundException("The product doesn't exists !");
+    public List<Product> getProductByDesignation(String designation) {
+        List<Product> products = productRepository.findProductByDesignation(designation);
+        if(products.isEmpty() ){
+            throw new EntityNotFoundException("cannot find any product with the designation" + " " + designation);
         }
-        return productRepository.findProductByDesignation(designation);
+        return products;
     }
 
     @Override
@@ -37,11 +38,8 @@ public class ProductServiceImpl implements ProductService{
         if(productRepository.findProductById(product.getId()) != null ){
             throw new EntityAlreadyExistsException("The product already exists");
         }
-        if(productRepository.findProductByDesignation(product.getDesignation()) != null){
-            throw new EntityAlreadyExistsException("A product already has the same designation");
-        }
-        if(product.getPrice() < 0 || product.getDepositQuantity() < 0){
-            throw new NegativeValuesException("The product's price or quantity cannot be negative");
+        if(product.getPrice()  < 0){
+            throw new NegativeValuesException("The product's price cannot be negative");
         }
         return productRepository.save(product);
     }
@@ -59,8 +57,8 @@ public class ProductServiceImpl implements ProductService{
         updatedProduct.setDepositQuantity(product.getDepositQuantity());
         updatedProduct.setExpirationDate(product.getExpirationDate());
         updatedProduct.setShortDescription(product.getShortDescription());
-        if(product.getPrice() < 0 || product.getDepositQuantity() < 0){
-            throw new NegativeValuesException("The product's price or quantity cannot be negative");
+        if(product.getPrice() < 0 ){
+            throw new NegativeValuesException("The product's price cannot be negative");
         }
 
         return productRepository.save(updatedProduct);

@@ -28,9 +28,9 @@ public class ProductController {
 
 
     @GetMapping("/search/{designation}")
-    public ResponseEntity<Product> getProductByDesignation(@PathVariable String designation) {
-        Product product = productService.getProductByDesignation(designation);
-        return ResponseEntity.ok(product) ;
+    public ResponseEntity<List<Product>> getProductByDesignation(@PathVariable String designation) {
+        List<Product> products = productService.getProductByDesignation(designation);
+        return ResponseEntity.ok(products) ;
     }
 
 
