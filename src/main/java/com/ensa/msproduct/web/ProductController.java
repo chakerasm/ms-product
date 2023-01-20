@@ -9,10 +9,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/product")
-@CrossOrigin(origins = "http://localhost:4200")
 
 public class ProductController {
-
     private final ProductService productService;
 
     public ProductController(ProductService productService) {
@@ -25,6 +23,11 @@ public class ProductController {
     public ResponseEntity<List<Product>> getProducts() {
         List<Product> products = productService.getProducts();
         return ResponseEntity.ok(products) ;
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity<Product> getProductById(@PathVariable Long id) {
+        Product product = productService.getProductById(id);
+        return ResponseEntity.ok(product) ;
     }
 
 

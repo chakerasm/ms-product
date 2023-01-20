@@ -8,6 +8,7 @@ import com.ensa.msproduct.exceptions.NegativeValuesException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductServiceImpl implements ProductService{
@@ -31,6 +32,15 @@ public class ProductServiceImpl implements ProductService{
             throw new EntityNotFoundException("cannot find any product with the designation" + " " + designation);
         }
         return products;
+    }
+
+    @Override
+    public Product getProductById(Long id) {
+        Optional<Product> product = productRepository.findById(id);
+        if(product.isPresent() ){
+            return product.get() ;
+        }
+        throw new EntityNotFoundException("The product doesn't exists");
     }
 
     @Override
