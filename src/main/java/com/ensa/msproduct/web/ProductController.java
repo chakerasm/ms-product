@@ -24,6 +24,22 @@ public class ProductController {
         List<Product> products = productService.getProducts();
         return ResponseEntity.ok(products) ;
     }
+    @GetMapping("/count")
+    public ResponseEntity<Long> getProductsCount() {
+        Long count = productService.getProductsCount();
+        return ResponseEntity.ok(count);
+    }
+    @GetMapping("/available")
+    public ResponseEntity<Long> availableProductsCount() {
+        Long count = productService.availableProductsCount();
+        return ResponseEntity.ok(count);
+    }
+    @GetMapping("/unavailable")
+    public ResponseEntity<Long> unavailableProductsCount() {
+        Long count = productService.unavailableProductsCount();
+        return ResponseEntity.ok(count);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable Long id) {
         Product product = productService.getProductById(id);

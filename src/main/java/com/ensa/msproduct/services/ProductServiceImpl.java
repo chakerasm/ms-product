@@ -5,8 +5,10 @@ import com.ensa.msproduct.entities.Product;
 import com.ensa.msproduct.exceptions.EntityAlreadyExistsException;
 import com.ensa.msproduct.exceptions.EntityNotFoundException;
 import com.ensa.msproduct.exceptions.NegativeValuesException;
+import com.jayway.jsonpath.Criteria;
 import org.springframework.stereotype.Service;
 
+import javax.management.Query;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,6 +26,22 @@ public class ProductServiceImpl implements ProductService{
     public List<Product> getProducts() {
         return productRepository.findAll();
     }
+
+    @Override
+    public Long getProductsCount() {
+        return productRepository.count();
+    }
+
+    @Override
+    public Long availableProductsCount() {
+        return productRepository.availableProducts();
+    }
+
+    @Override
+    public Long unavailableProductsCount() {
+        return productRepository.unavailableProducts();
+    }
+
 
     @Override
     public List<Product> getProductByDesignation(String designation) {

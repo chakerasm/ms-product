@@ -8,7 +8,10 @@ import java.util.List;
 public interface ProductService {
 
     List<Product> getProducts();
+    Long getProductsCount();
 
+    Long availableProductsCount();
+    Long unavailableProductsCount();
     List<Product> getProductByDesignation(String designation);
     Product getProductById(Long id);
     Product addProduct(Product product);
